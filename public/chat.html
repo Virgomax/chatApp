@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ChatApp</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+  <link rel='stylesheet' type='text/css' href='css/chat.css' media='screen'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="chat">
+  <div class="chat__sidebar">
+    <h3>People</h3>
+    <ul id="users"></ul>
+  </div>
+
+  <div class="chat__main">
+
+    
+    <ol id="messages" class="chat__messages"></ol>
+
+    <div class="chat__footer">
+        <form id="message-form">
+            <input id="txtMessage" name="txtMessage" type="text" placeholder="Message" autofocus autocomplete="off"/>
+            <button>Send</button>
+          </form>
+          <button id="btnSendLocation">Send Location</button>
+    </div>
+
+
+  </div>
+  <script id="message-template" type="text/template">
+    <li class="message">
+      <div class="message__title">
+        <h4>{{from}}</h4>
+        <span>{{createdAt}}</span>
+      </div>
+      <div class="message__body">
+          <p>{{text}}</p>
+      </div>
+    </li>
+  </script>
+
+  <script id="location-message-template" type="text/template">
+    <li class="message">
+      <div class="message__title">
+        <h4>{{from}}</h4>
+        <span>{{createdAt}}</span>
+      </div>
+      <div class="message__body">
+          <a target="_blank" href="{{url}}">{{latitude}}, {{longitude}}</a>
+      </div>
+    </li>
+  </script>
+
+  <script src="/js/deparam.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+
+</html>
